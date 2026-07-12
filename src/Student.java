@@ -32,7 +32,7 @@ public class Student {
     public String getName() { return name; }
     public String getSurname() { return surname; }
     public String getPatronymic() { return patronymic; }
-    public List<Book> getBooks() { return books; }
+    public List<Book> getBooks() { return List.copyOf(books); }
 
     public void setBooks(List<Book> books) {
         if (books == null || books.isEmpty()) {
