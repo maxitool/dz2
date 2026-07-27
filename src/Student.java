@@ -10,21 +10,22 @@ public class Student {
     private final String patronymic;
     private List<Book> books;
 
-    public Student(String name, String surname, String patronymic)
-    {
-        if (name == null)
+    public Student(String name, String surname, String patronymic) {
+        if (name == null) {
             name = "";
+        }
         this.name = name;
-        if (surname == null)
+        if (surname == null) {
             surname = "";
+        }
         this.surname = surname;
-        if (patronymic == null)
+        if (patronymic == null) {
             patronymic = "";
+        }
         this.patronymic = patronymic;
         this.books = List.of();
     }
-    public Student(String name, String surname, String patronymic, List<Book> books)
-    {
+    public Student(String name, String surname, String patronymic, List<Book> books) {
         this(name, surname, patronymic);
         setBooks(books);
     }
@@ -40,22 +41,21 @@ public class Student {
             this.books = List.of();
             return;
         }
-        if (books.size() < COUNT_BOOKS)
+        if (books.size() < COUNT_BOOKS) {
             System.out.println("The number of books is less than " + COUNT_BOOKS + '.');
+        }
         this.books = List.copyOf(books);
     }
 
     public static Student stringToStudent(String studentData) {
-        if (studentData == null)
-        {
+        if (studentData == null) {
             System.out.println("studentData is null.");
             return null;
         }
-        int start, end;
         try {
-            String name = OtherUtils.substringData(studentData, "name='", "',").trim();
-            String surname = OtherUtils.substringData(studentData, "surname='", "',").trim();
-            String patronymic = OtherUtils.substringData(studentData, "patronymic='", "',").trim();
+            String name = StringsUtils.substringData(studentData, "name='", "',").trim();
+            String surname = StringsUtils.substringData(studentData, "surname='", "',").trim();
+            String patronymic = StringsUtils.substringData(studentData, "patronymic='", "',").trim();
             return new Student(name, surname, patronymic);
         } catch (Exception e) {
             System.out.println("Can't convert string '" + studentData + "' to Student class: " + e.getMessage());
@@ -76,13 +76,12 @@ public class Student {
             while (line != null) {
                 data = line.split("\\|\\|\\|");
                 student = stringToStudent(data[0]);
-                if (student == null){
+                if (student == null) {
                     line = reader.readLine();
                     continue;
                 }
                 books = new ArrayList<>();
-                for (int i = 1; i < data.length; i++)
-                {
+                for (int i = 1; i < data.length; i++) {
                     book = Book.stringToBook(data[i]);
                     if (book != null)
                         books.add(book);
@@ -108,8 +107,9 @@ public class Student {
             return false;
         }
         StandardOpenOption standardOpenOption = StandardOpenOption.APPEND;
-        if (doClearFile)
+        if (doClearFile) {
             standardOpenOption = StandardOpenOption.TRUNCATE_EXISTING;
+        }
         StringBuilder stringBuilder = new StringBuilder();
         students.stream().peek(student -> stringBuilder.append("\n").append(student.toString()))
                 .flatMap(student -> student.getBooks().stream())
@@ -131,8 +131,7 @@ public class Student {
             } catch (IOException e2) {
                 System.out.println("Can't create file: " + e2.getMessage());
             }
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.out.println("Can't write students to file: " + e.getMessage());
         }
         return false;

@@ -11,11 +11,13 @@ public final class Book {
         this.id = id;
         this.name = name;
         this.author = author;
-        if (publicationDate <= 0)
+        if (publicationDate <= 0) {
             System.out.println("Book have a strange publication date: " + publicationDate);
+        }
         this.publicationDate = publicationDate;
-        if (countPages <= 0)
+        if (countPages <= 0) {
             System.out.println("Book have a strange countPages number: " + countPages);
+        }
         this.countPages = countPages;
     }
     public int getId() { return id; }
@@ -25,18 +27,16 @@ public final class Book {
     public short getCountPages() { return countPages; }
 
     public static Book stringToBook(String bookData) {
-        if (bookData == null)
-        {
+        if (bookData == null) {
             System.out.println("bookData is null.");
             return null;
         }
-        int start, end;
         try {
-            int id = Integer.parseInt(OtherUtils.substringData(bookData, "id=", ",").trim());
-            String name = OtherUtils.substringData(bookData, "name='", "',").trim();
-            String author = OtherUtils.substringData(bookData, "author='", "',").trim();
-            short publicationDate = Short.parseShort(OtherUtils.substringData(bookData, "publicationDate=", ",").trim());
-            short countPages = Short.parseShort(OtherUtils.substringData(bookData, "countPages=", "}").trim());
+            int id = Integer.parseInt(StringsUtils.substringData(bookData, "id=", ",").trim());
+            String name = StringsUtils.substringData(bookData, "name='", "',").trim();
+            String author = StringsUtils.substringData(bookData, "author='", "',").trim();
+            short publicationDate = Short.parseShort(StringsUtils.substringData(bookData, "publicationDate=", ",").trim());
+            short countPages = Short.parseShort(StringsUtils.substringData(bookData, "countPages=", "}").trim());
             return new Book(id, name, author, publicationDate, countPages);
         } catch (Exception e) {
             System.out.println("Can't convert string '" + bookData + "' to Book class: " + e.getMessage());

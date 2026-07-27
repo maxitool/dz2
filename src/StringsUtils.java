@@ -1,4 +1,4 @@
-public class OtherUtils {
+public class StringsUtils {
     public static String substringData(String data, String start, String end) throws Exception {
         int startIndex = data.indexOf(start) + start.length();
         int endIndex = data.indexOf(end, startIndex);
