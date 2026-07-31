@@ -20,11 +20,22 @@ public final class Book {
         }
         this.countPages = countPages;
     }
-    public int getId() { return id; }
-    public String getName() { return name; }
-    public String getAuthor() { return author; }
-    public short getPublicationDate() { return publicationDate; }
-    public short getCountPages() { return countPages; }
+
+    public int getId() {
+        return id;
+    }
+    public String getName() {
+        return name;
+    }
+    public String getAuthor() {
+        return author;
+    }
+    public short getPublicationDate() {
+        return publicationDate;
+    }
+    public short getCountPages() {
+        return countPages;
+    }
 
     public static Book stringToBook(String bookData) {
         if (bookData == null) {
@@ -57,9 +68,13 @@ public final class Book {
 
     @Override
     public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Book book = (Book) o;
-        if (book.hashCode() != this.hashCode()) return false;
+        if (book.hashCode() != this.hashCode()) {
+            return false;
+        }
         return id == book.id && publicationDate == book.publicationDate && Objects.equals(name, book.name)
                 && Objects.equals(author, book.author) && countPages == book.countPages;
     }

@@ -37,10 +37,18 @@ public class Student {
         setBooks(books);
     }
 
-    public String getName() { return name; }
-    public String getSurname() { return surname; }
-    public String getPatronymic() { return patronymic; }
-    public List<Book> getBooks() { return List.copyOf(books); }
+    public String getName() {
+        return name;
+    }
+    public String getSurname() {
+        return surname;
+    }
+    public String getPatronymic() {
+        return patronymic;
+    }
+    public List<Book> getBooks() {
+        return List.copyOf(books);
+    }
 
     public void setBooks(List<Book> books) {
         if (books == null || books.isEmpty()) {
@@ -155,9 +163,13 @@ public class Student {
 
     @Override
     public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Student student = (Student) o;
-        if (student.hashCode() != hashCode()) return false;
+        if (student.hashCode() != hashCode()) {
+            return false;
+        }
         return Objects.equals(name, student.name) && Objects.equals(surname, student.surname) && Objects.equals(patronymic, student.patronymic) && Objects.equals(books, student.books);
     }
 
